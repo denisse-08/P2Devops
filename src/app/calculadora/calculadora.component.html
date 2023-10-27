@@ -1,0 +1,115 @@
+<header class="bg-primary text-white text-center py-3">
+    <h1>Calculadora de Figuras geometricas</h1>
+</header>
+
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="../../assets/fig2.png" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="../../assets/original.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="../../assets/sddefault.jpg" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<div class="container mt-5">
+    <h2 class="my-4">Calculadora de Figuras</h2>
+    <div class="row">
+        <!-- Formulario -->
+        <div class="col-md-6">
+            <form #forma="ngForm" (ngSubmit)="calcular(forma)">
+                <div class="form-group">
+                    <label for="figura">Selecciona una figura:</label>
+                    <select class="form-control" id="figura" name="figura" [(ngModel)]="figuraSeleccionada">
+                        <option value="cuadrado">Cuadrado</option>
+                        <option value="triangulo">Triángulo</option>
+                        <option value="rectangulo">Rectángulo</option>
+                        <option value="circulo">Círculo</option>
+                    </select>
+                </div>
+
+                <!-- Campos adicionales según la figura seleccionada -->
+                <div *ngIf="figuraSeleccionada === 'cuadrado'" class="mt-4">
+                    <div class="form-group">
+                        <label for="lado">Lado del cuadrado:</label>
+                        <input type="number" class="form-control" id="lado" name="lado" [(ngModel)]="lado">
+                    </div>
+                </div>
+
+                <div *ngIf="figuraSeleccionada === 'triangulo'" class="mt-4">
+                    <div class="form-group">
+                        <label for="base">Base del triángulo:</label>
+                        <input type="number" class="form-control" id="base" name="base" [(ngModel)]="base">
+                    </div>
+                    <div class="form-group">
+                        <label for="altura">Altura del triángulo:</label>
+                        <input type="number" class="form-control" id="altura" name="altura" [(ngModel)]="altura">
+                    </div>
+                </div>
+
+                <div *ngIf="figuraSeleccionada === 'rectangulo'" class="mt-4">
+                    <div class="form-group">
+                        <label for="base">Base del rectángulo:</label>
+                        <input type="number" class="form-control" id="base" name="base" [(ngModel)]="base">
+                    </div>
+                    <div class="form-group">
+                        <label for="altura">Altura del rectángulo:</label>
+                        <input type="number" class="form-control" id="altura" name="altura" [(ngModel)]="altura">
+                    </div>
+                </div>
+
+                <div *ngIf="figuraSeleccionada === 'circulo'" class="mt-4">
+                    <div class="form-group">
+                        <label for="radio">Radio del círculo:</label>
+                        <input type="number" class="form-control" id="radio" name="radio" [(ngModel)]="radio">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-4">Calcular</button>
+                <br><br>
+            </form>
+        </div>
+
+        <!-- Imagen según la figura seleccionada -->
+        <div class="col-md-6">
+            <img *ngIf="figuraSeleccionada === 'cuadrado'" src="../../assets/CUADRADO.png" alt="Cuadrado" [style.width.px]="100" 
+     [style.height.px]="100">
+            <img *ngIf="figuraSeleccionada === 'triangulo'" src="../../assets/triangulo.jpg" alt="Triángulo" [style.width.px]="100" 
+     [style.height.px]="100">
+            <img *ngIf="figuraSeleccionada === 'rectangulo'" src="../../assets/rectangulo.png" alt="Rectángulo" [style.width.px]="100" 
+     [style.height.px]="100">
+            <img *ngIf="figuraSeleccionada === 'circulo'" src="../../assets/circulito.png" alt="Círculo" [style.width.px]="100" 
+     [style.height.px]="100">
+        </div>
+    </div>
+</div>
+<footer class="bg-primary text-light text-center">
+    <div class="container py-3">
+        <p>&copy; 2023  Practica DevOps</p>
+        <p>Contacto: 201416@uthh.edu.mx</p>
+    </div>
+</footer>
+
+
