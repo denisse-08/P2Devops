@@ -1,17 +1,35 @@
-name: Node.js CI
+name: Angular Testing with Node.js 18.17.0
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [18.17.0]
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: "18.17.0"
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm test
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Angular tests
+        run: ng test
